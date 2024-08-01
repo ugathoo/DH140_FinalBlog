@@ -20,27 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +100,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Forest Fire Factors: What Adds Fuel to the Fire?</span>
     </a>
   </div>
@@ -149,7 +123,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -172,13 +146,13 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
+    <div class="quarto-title column-body">
       <h1 class="title">Forest Fire Factors: What Adds Fuel to the Fire?</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
     
@@ -186,52 +160,95 @@ window.Quarto = {
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p>Urja Gathoo | August 2, 2024</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This analysis seeks to determine what factors contribute to forest fires in order to better protect from and potentially predict them, particularly in climates like California’s, a state famous for forest fires. Understanding factors that can lead to forest fires is the first step to taking preventatuive measures when those factors are present, or even using modern technology such as satellites to predict conditions that make fires more likely. Prior work on this subject and this particular dataset include a study done by Cortez and Morais in 2007 for the Portuguese Conference on Artificial Intelligence. Specifically, their work takes a look at data mining techniques like Random Forests and Gaussian support vector machines (SVMs) to run predictive analysis on the burned area of forest fires. Their study found that SVMs better predict small fires than Random Forest, using two different regression measures in their comparison (Mean absolute deviation and root mean squared error). This study focuses more on the factors themselves rather than trying to predict fire behavior.</p>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<section id="dataset" class="level3">
+<h3 class="anchored" data-anchor-id="dataset">Dataset</h3>
+<p>This dataset, provided by the University of California at Irvine’s machine learning repository, contains information about 517 forest fires from the Montesinho natural park in the Tr´as-os-Montes northeast region of Portugal, collected using meteorological and other data. Located within a supra-Mediterranean climate, the average annual temperature is within the range 8 to 12◦C. The data used in the experiments was collected from January 2000 to December 2003 and it was built using two sources. The first database was collected by the inspector that was responsible for the Montesinho fire occurrences. The second database was collected by the Braganc¸a Polytechnic Institute, containing weather observations recorded with a 30 minute period by a meteorological station located in the center of the park. Manual labor was used to consolidate the 2 databases into the 517 rows of this dataset(Cortez, Morais 2007). For each fire, 12 features are noted: 1. X - x-axis spatial coordinate within the Montesinho park map: 1 to 9 2. Y - y-axis spatial coordinate within the Montesinho park map: 2 to 9 3. month - month of the year: ‘jan’ to ‘dec’ 4. day - day of the week: ‘mon’ to ‘sun’ 5. FFMC - FFMC index from the FWI system: 18.7 to 96.20 6. DMC - DMC index from the FWI system: 1.1 to 291.3 7. DC - DC index from the FWI system: 7.9 to 860.6 8. ISI - ISI index from the FWI system: 0.0 to 56.10 9. temp - temperature in Celsius degrees: 2.2 to 33.30 10. RH - relative humidity in %: 15.0 to 100 11. wind - wind speed in km/h: 0.40 to 9.40 12. rain - outside rain in mm/m2 : 0.0 to 6.4 13. area - the burned area of the forest (in ha): 0.00 to 1090.84</p>
+<p>For the purposes of this project, we will be focusing on features 3, 9, 10, and 11, and comparing each to feature 13 to get an understanding of the degree of severity of the fire for a given feature.</p>
+<p>This dataset is not without its problems. Namely, there is a lack of transparency from how this data was collected. It is unknown whether or not there were any privacy breaches during collection or if the data itself was gathered in a way that systematically ignore certain regions while prioritizing others. We don’t know how the manual labor may have biased the data in favor of certain variables(for instance skewing in favor of one month over another based on the collector’s preconceived notions). For this reason, any conclusions drawn through this analysis will be constrained to high-level, general ones rather than more specific statements.</p>
+<p>Although the dataset itself is specific to the northeast region of Portgual and this analysis aims to provide answers for California, conclusions can still be drawn due to specific similarities. Portugual and California both have a cool Mediterranean climate and similar weather patterns (KipperTree 2022). They also lie along similar latitudes (Becky 2016). These commonalities make it possible to make inferences on forest fire severity and likelihood, even though they are two completely separate places.</p>
+</section>
+<section id="general-approach-to-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="general-approach-to-analysis">General Approach to Analysis</h3>
+<p>Using Python, especially libraries such as Pandas and MatPlotLib, the dataset is appropriately modified to examine, analyze, and plot (as necessary) each of the 4 chosen variables and their relation to the overall area burned (a proxy to the severity of the fire). A lack of variance in the area burned at different values of each variable would indicate a lack of impact on the likelihood of a forest fire due to that variable, and vice versa. Understanding the data visualizations is key to forming conclusions in this analysis.</p>
+<section id="import-the-dataset" class="level4">
+<h4 class="anchored" data-anchor-id="import-the-dataset">Import the Dataset</h4>
+<div id="63a018ad" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fetch dataset </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>forest_fires <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">162</span>) </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># data (as pandas dataframes) </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>fullset <span class="op">=</span> (forest_fires.data.features).join(forest_fires.data.targets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[1], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span style="font-weight:bold;color:rgb(0,135,0)">from</span> <span style="font-weight:bold;color:rgb(0,0,255)">ucimlrepo</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> fetch_ucirepo 
+<span class="ansi-green-fg ansi-bold">      2</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="font-weight:bold;color:rgb(0,0,255)">pandas</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> <span style="font-weight:bold;color:rgb(0,0,255)">pd</span>
+<span class="ansi-green-fg ansi-bold">      3</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="font-weight:bold;color:rgb(0,0,255)">matplotlib</span><span style="font-weight:bold;color:rgb(0,0,255)">.</span><span style="font-weight:bold;color:rgb(0,0,255)">pyplot</span> <span style="font-weight:bold;color:rgb(0,135,0)">as</span> <span style="font-weight:bold;color:rgb(0,0,255)">plt</span>
 
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1722554670645" data-listing-reading-time-sort="8" data-listing-word-count-sort="1592">
-<div class="thumbnail">
-<p><a href="./posts/DH140_Final_Blog_FINAL.html" class="no-external"></a></p><a href="./posts/DH140_Final_Blog_FINAL.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/DH140_Final_Blog_FINAL.html" class="no-external"></a></p>
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'ucimlrepo'</pre>
 </div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/DH140_Final_Blog_FINAL.html" class="no-external">Forest Fire Factors: What Adds Fuel to the Fire?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/DH140_Final_Blog_FINAL.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/DH140_Final_Blog_FINAL.html" class="no-external">Urja Gathoo | August 2, 2024</a>
 </div>
 </div>
-<div class="metadata">
-<p><a href="./posts/DH140_Final_Blog_FINAL.html" class="no-external"></a></p><a href="./posts/DH140_Final_Blog_FINAL.html" class="no-external">
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</section>
+</section>
+<section id="analysis-of-months-variable" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-of-months-variable">Analysis of Months Variable</h3>
+<p>As one may expect, late summer/early months August and September had the highest number of forest fires by far, at 184 and 172 fires respectively. This correlates to the peak of “fire season” in California, where the summer sun dries out brush and shrubbery to make the perfect kindling for a fire. One notable outlier is March, with a whopping 54 fires. With a relatively temperate climate, it is unclear if this anomaly was caused by a particularly warm period between 2000-2003, or for some other reason. Other possibilites include intentionally set fires and fires lasting several months. We don’t know if these fires are double counted; right now it is assumed all fires are unique. Traditionally warmer months, like late spring months of April and May as well as late summer/early fall months of August and September had the most severe fires, driven likely by a combination of a lack of moisture in the air and ground and high temperatures of those seasons.</p>
+</section>
+<section id="analysis-of-temperature-variable" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-of-temperature-variable">Analysis of Temperature Variable</h3>
+<p>As expected, higher temperatures yielded more fires, but the shape of the graph above is interesting. One would expect a steady upward trend in the number of fires as the temperature grows. Instead, we see a skewed bell curve, with the majority of fires occuring when the temperature is between 15 - 25 degrees Celsius. From the data collectors, we know that this range falls 3-13 degrees higher than the normal high temperature of the region. To some degree however, the dropoff at temperature extreme highs makes sense. When the temperature is that high, people tend to be more careful, taking less risks and being hypervigilant for fire hazards. 15 degrees Celsius is about 59 degrees Farenheit, significantly cooler than 30 degrees Celsius(86 deg F). It stands to reason that as temperature dips slightly, people tend to let their guards down, leading to more risky and fire prone behavior. The observed temperature may also be impacted by cooling factors like wind. As oxygen adds fuel to a fire, a windier cool day poses significantly more fire risk than a warmer, less windy day. Temperature appears to have no bearing on how severe a fire is, as the trend for the bottom graph is a straight flat line.</p>
+</section>
+<section id="analysis-of-relative-humidity-variable" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-of-relative-humidity-variable">Analysis of Relative Humidity Variable</h3>
+<p>Initially, I thought that with more moisture in the air, fires would be less severe as they would not be able to burn as intensely. However, the graph above dispels that notion. At practically every level of humidity, the impact on the severity of the fire seems to be very little, a rough oscillation around a straight flat line trend. However, the histogram reveals that skew we were anticipating. While humidity may not have a great impact on the severity of a fire, lower humidity means a greater fire risk than higher humidity.</p>
+</section>
+<section id="analysis-of-wind-variable" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-of-wind-variable">Analysis of Wind Variable</h3>
+<p>There appears to be a Golidlocks spot of sorts where wind speeds create severe fires frequently. Both graphs have about the same shape, peaking at a range between 2 and 6 kilometers per hour. More or less than that and fires don’t occur as often or as intensely. This makes some sense. Blowing too hard on a candle will extinguish it; it follows that for any fire, too much wind will kill it. Because fires need air to grow, too little wind also will not feed a fire enough before it dies. The sweet spot the data reveals gives the fire enough air to spread while not blowing hard enough to put it out completely.</p>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>When looking at factors contributing to the overall severity and frequency of fires, many common assumptions were proven while surprising insights were revealed. When it comes to the time of year, our analysis of the months variable showed that as expected warmer months in late summer and early fall are at higher risk of intense fires. At temperatures between 15-25 deg Celsius,humidity between 20 and 50%, or wind speeds between 2 and 6 kmph, the risk of fire (severe or not) is increased. Whenever at least one of the above 4 factors is detected in the fire-prone range found, extra preventative precautions should be taken. Be it controlled burns of dense brush areas or creating empty land boundaries where the fire has nothing to burn, recognizing these factors is key to controlling or even preventing forest fires. Forest fires have caused billions of dollars of damages over the years, and have taken lives and livelihoods in the process. The reality is that forest fires will happen, but understanding how different environmental elements play into their occurence is important for adequate preparation and even prediction.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Cortez,Paulo and Morais,Anbal. (2008). Forest Fires. UCI Machine Learning Repository. <a href="https://doi.org/10.24432/C5D88D">https://doi.org/10.24432/C5D88D</a>.</p>
+<p>BeckyB. (2016). On the same latitude as San Francisco. BeckyInPortugal.com <a href="https://beckyinportugal.com/2016/11/20/climate-latitude-weather-portugal/">https://beckyinportugal.com/2016/11/20/climate-latitude-weather-portugal/</a></p>
+<p>KipperTree. (2022). Is Portugal The California Of Europe. <a href="https://kippertree.com/blogs/is-portugal-the-california-of-europe#:~:text=While%20Portugal%20is%20in%20Europe,also%20winter%20is%20less%20harsh">https://kippertree.com/blogs/is-portugal-the-california-of-europe</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
