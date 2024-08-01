@@ -190,59 +190,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Using Python, especially libraries such as Pandas and MatPlotLib, the dataset is appropriately modified to examine, analyze, and plot (as necessary) each of the 4 chosen variables and their relation to the overall area burned (a proxy to the severity of the fire). A lack of variance in the area burned at different values of each variable would indicate a lack of impact on the likelihood of a forest fire due to that variable, and vice versa. Understanding the data visualizations is key to forming conclusions in this analysis.</p>
 <section id="import-the-dataset" class="level4">
 <h4 class="anchored" data-anchor-id="import-the-dataset">Import the Dataset</h4>
-<div id="0c89dd7e" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>title: <span class="st">"Import Dataset"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">format</span>:</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  html:</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    code<span class="op">-</span>fold: true</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>jupyter: python3</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>```{python}</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># fetch dataset </span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>forest_fires <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">162</span>) </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># data (as pandas dataframes) </span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>fullset <span class="op">=</span> (forest_fires.data.features).join(forest_fires.data.targets)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="63a018ad" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fetch dataset </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>forest_fires <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">162</span>) </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># data (as pandas dataframes) </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>fullset <span class="op">=</span> (forest_fires.data.features).join(forest_fires.data.targets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="c0fbc8b1" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Variable 1: Month of the year</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>monthset <span class="op">=</span> fullset[[<span class="st">"month"</span>,<span class="st">"area"</span>]]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a bar graph to see how many fires per month</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>months <span class="op">=</span> [<span class="st">'jan'</span>, <span class="st">'feb'</span>, <span class="st">'mar'</span>, <span class="st">'apr'</span>, <span class="st">'may'</span>, <span class="st">'jun'</span>, <span class="st">'aug'</span>, <span class="st">'sep'</span>, <span class="st">'oct'</span>, <span class="st">'nov'</span>, <span class="st">'dec'</span>]</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>month_tot <span class="op">=</span> {}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> month <span class="kw">in</span> months:</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  m <span class="op">=</span> <span class="bu">len</span>(monthset.loc[monthset[<span class="st">'month'</span>] <span class="op">==</span> month])</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  month_tot[month] <span class="op">=</span> m</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.bar(month_tot.keys(), month_tot.values())</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Number of Fires Per Month"</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Month"</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Number of Fires"</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Create line plot to see on average the severity of fires per month</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>month_avg <span class="op">=</span> {}</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> month <span class="kw">in</span> months:</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  m <span class="op">=</span> monthset.loc[monthset[<span class="st">'month'</span>] <span class="op">==</span> month]</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  total <span class="op">=</span> <span class="bu">sum</span>(m[<span class="st">"area"</span>])</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  avg <span class="op">=</span> total<span class="op">/</span><span class="bu">len</span>(m[<span class="st">"area"</span>])</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  month_avg[month] <span class="op">=</span> avg</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>plt.plot(month_avg.keys(), month_avg.values(), <span class="st">'-bo'</span>)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Average Area Burned per Month"</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Month"</span>)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Avg Area (ha)"</span>)</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -264,26 +223,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="analysis-of-months-variable">Analysis of Months Variable</h3>
 <p>As one may expect, late summer/early months August and September had the highest number of forest fires by far, at 184 and 172 fires respectively. This correlates to the peak of “fire season” in California, where the summer sun dries out brush and shrubbery to make the perfect kindling for a fire. One notable outlier is March, with a whopping 54 fires. With a relatively temperate climate, it is unclear if this anomaly was caused by a particularly warm period between 2000-2003, or for some other reason. Other possibilites include intentionally set fires and fires lasting several months. We don’t know if these fires are double counted; right now it is assumed all fires are unique. Traditionally warmer months, like late spring months of April and May as well as late summer/early fall months of August and September had the most severe fires, driven likely by a combination of a lack of moisture in the air and ground and high temperatures of those seasons.</p>
 <div id="56f07afb" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Variable 2: Temperature</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Create histogram to show ranges of temps with highest number of fires</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tempset <span class="op">=</span> fullset[[<span class="st">'temp'</span>, <span class="st">'area'</span>]]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.hist(tempset[<span class="st">'temp'</span>], rwidth<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Number of Fires for a Range of Temperatures"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Temperature(C)"</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Number of Fires"</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>tempdict <span class="op">=</span> {}</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">set</span>(tempset[<span class="st">'temp'</span>]):</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  te <span class="op">=</span> tempset.loc[tempset[<span class="st">'temp'</span>] <span class="op">==</span> t]</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  avg <span class="op">=</span> <span class="bu">sum</span>(te[<span class="st">'area'</span>])<span class="op">/</span><span class="bu">len</span>(te[<span class="st">'area'</span>])</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  tempdict[t] <span class="op">=</span> avg</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.plot(tempdict.keys(), tempdict.values(), <span class="st">'-bo'</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Average Burned Area for Temperature"</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Temperature(C)"</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Area Burned(ha)"</span>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -304,26 +243,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="analysis-of-temperature-variable">Analysis of Temperature Variable</h3>
 <p>As expected, higher temperatures yielded more fires, but the shape of the graph above is interesting. One would expect a steady upward trend in the number of fires as the temperature grows. Instead, we see a skewed bell curve, with the majority of fires occuring when the temperature is between 15 - 25 degrees Celsius. From the data collectors, we know that this range falls 3-13 degrees higher than the normal high temperature of the region. To some degree however, the dropoff at temperature extreme highs makes sense. When the temperature is that high, people tend to be more careful, taking less risks and being hypervigilant for fire hazards. 15 degrees Celsius is about 59 degrees Farenheit, significantly cooler than 30 degrees Celsius(86 deg F). It stands to reason that as temperature dips slightly, people tend to let their guards down, leading to more risky and fire prone behavior. The observed temperature may also be impacted by cooling factors like wind. As oxygen adds fuel to a fire, a windier cool day poses significantly more fire risk than a warmer, less windy day. Temperature appears to have no bearing on how severe a fire is, as the trend for the bottom graph is a straight flat line.</p>
 <div id="5d3bc75f" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Variable 3: Relative Humidity</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Create Average area burned line plot</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>humset <span class="op">=</span> fullset[[<span class="st">'RH'</span>, <span class="st">'area'</span>]]</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>humdict <span class="op">=</span> {}</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> hum <span class="kw">in</span> <span class="bu">set</span>(humset[<span class="st">'RH'</span>]):</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  h <span class="op">=</span> humset.loc[humset[<span class="st">'RH'</span>] <span class="op">==</span> hum]</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  avg <span class="op">=</span> <span class="bu">sum</span>(h[<span class="st">'area'</span>])<span class="op">/</span><span class="bu">len</span>(h[<span class="st">'area'</span>])</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  humdict[hum] <span class="op">=</span> avg</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.plot(humdict.keys(), humdict.values(), <span class="st">'-bo'</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Average Area Burned by Relative Humidity"</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Relative Humidity (%)"</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Area Burned(ha)"</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.hist(humset[<span class="st">"RH"</span>], rwidth<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Number of Fires for Relative Humidity"</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Relative Humidity(%)"</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Number of Fires"</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -344,28 +263,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="analysis-of-relative-humidity-variable">Analysis of Relative Humidity Variable</h3>
 <p>Initially, I thought that with more moisture in the air, fires would be less severe as they would not be able to burn as intensely. However, the graph above dispels that notion. At practically every level of humidity, the impact on the severity of the fire seems to be very little, a rough oscillation around a straight flat line trend. However, the histogram reveals that skew we were anticipating. While humidity may not have a great impact on the severity of a fire, lower humidity means a greater fire risk than higher humidity.</p>
 <div id="a8ece53f" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Variable 4: Wind</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Histogram of wind</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Average Burned Line Plot</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>windset <span class="op">=</span> fullset[[<span class="st">'wind'</span>, <span class="st">'area'</span>]]</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>winddict <span class="op">=</span> {}</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> w <span class="kw">in</span> <span class="bu">sorted</span>(<span class="bu">set</span>(windset[<span class="st">'wind'</span>])):</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  wi <span class="op">=</span> windset.loc[windset[<span class="st">'wind'</span>] <span class="op">==</span> w]</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  avg <span class="op">=</span> <span class="bu">sum</span>(wi[<span class="st">'area'</span>])<span class="op">/</span><span class="bu">len</span>(wi[<span class="st">'area'</span>])</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  winddict[w] <span class="op">=</span> avg</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.plot(winddict.keys(), winddict.values(), <span class="st">'-bo'</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Average Area Burned by Wind"</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Wind (kmph)"</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Area Burned(ha)"</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.hist(windset[<span class="st">"wind"</span>], rwidth<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Number of Fires for a Range of Wind Speeds"</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Wind Speed(kmph)"</span>)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Number of Fires"</span>)</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
